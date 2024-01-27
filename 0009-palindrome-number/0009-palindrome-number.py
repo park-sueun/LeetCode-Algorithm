@@ -11,12 +11,12 @@ class Solution(object):
         # 다 돌았을 때 true
         
         x = list(str(x))
-        l, r = x[:len(x)/2], x[len(x)/2:]
-        if len(l) != len(r):
-            r.pop(0)
-        
-        r.reverse()
-        if l == r:
-            return True
-        
-        return False
+        left, right = x[:len(x)/2], x[len(x)/2:]
+        if len(left) != len(right):
+            right.pop(0)
+            
+        for r in right:
+            if r != left.pop():
+                return False
+            
+        return True
