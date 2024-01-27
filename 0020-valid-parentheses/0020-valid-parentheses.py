@@ -4,17 +4,13 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        c_dict = {
-            '(': ')',
-            '{': '}',
-            '[': ']'
-        }
-        stack = []
+        temp, s_dict = [], {'(': ')', '{': '}', '[': ']'}
+        
         for i in list(s):
             if i in [')', '}', ']']:
-                if stack == [] or (stack and c_dict[stack.pop()] != i):
+                if not temp or temp.pop() != i:
                     return False
             else:
-                stack.append(i)
-                
-        return False if stack else True
+                temp.append(s_dict[i])
+        
+        return False if temp else True
