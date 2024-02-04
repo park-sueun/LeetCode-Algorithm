@@ -6,7 +6,7 @@ class Solution(object):
         """
         
         answer = [0] * len(temperatures)
-        stack = [] # [(idx, temperature)]
+        stack = [] # [(curr_day, curr_temp)]
         for curr_day, curr_temp in enumerate(temperatures):
             while stack and stack[-1][1] < curr_temp:
                 prev_day, _ = stack.pop()
