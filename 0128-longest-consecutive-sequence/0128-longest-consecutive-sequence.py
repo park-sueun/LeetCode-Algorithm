@@ -4,18 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if nums:
-            nums_dict = {n: 1 for n in nums}
-            nums.sort()
-            
-            next_n = nums[0]
-            for n in nums:
-                if n >= next_n:
-                    next_n = n + 1
-                    while next_n in nums_dict:
-                        nums_dict[n] += 1
-                        next_n += 1
-
-            return max(nums_dict.values())
-        else:
-            return 0
+        max_cnt = 0
+        nums_set = set(nums)
+        for curr_num in nums_set:
+            prev_num, next_num = [curr_num - 1, curr_num + 1]
+            curr_cnt = 1
+            if prev_num not in nums_set: # First Start Numer!
+                while next_num in nums_set:
+                    curr_cnt += 1
+                    next_num += 1
+            max_cnt = max(max_cnt, curr_cnt)
+        
+        return max_cnt
