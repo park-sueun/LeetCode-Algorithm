@@ -11,39 +11,18 @@ class Solution(object):
         self.left_visited = []
         self.right_visited = []
         
-    def left_traversal(self, root):
-        if root is None:
-            self.left_visited.append(None)
-            return None
+    def isSymmetricHelper(self, left, right):
+        if left is None or right is None:
+            return left == right
         
-        self.left_visited.append(root.val)
-        self.left_traversal(root.left)
-        self.left_traversal(root.right)
-    
-    
-    def right_traversal(self, root):
-        if root is None:
-            self.right_visited.append(None)
-            return None
+        if left.val != right.val:
+            return False
         
-        self.right_visited.append(root.val)
-        self.right_traversal(root.right)
-        self.right_traversal(root.left)
+        return self.isSymmetricHelper(left.left, right.right) and self.isSymmetricHelper(left.right, right.left)
         
     def isSymmetric(self, root):
         """
         :type root: TreeNode
         :rtype: bool
         """
-        if self.root is None:
-            self.root = root
-        
-        if root is None:
-            return None
-        
-        self.left_traversal(root.left)
-        self.right_traversal(root.right)
-        
-        return self.left_visited == self.right_visited
-        
-        
+        return root is None or self.isSymmetricHelper(root.left, root.right)
