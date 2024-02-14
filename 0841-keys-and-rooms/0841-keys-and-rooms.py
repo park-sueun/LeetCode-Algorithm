@@ -4,14 +4,14 @@ class Solution(object):
         :type rooms: List[List[int]]
         :rtype: bool
         """
-        visited = []
-        curr_v = 0 # 0번째 방은 열린 상태
+        visited = set()
+        curr_v = 0
         
         def dfs(curr_v):
-            visited.append(curr_v)
-            for v in rooms[curr_v]:
-                if v not in visited:
-                    dfs(v)
+            visited.add(curr_v)
+            for next_v in rooms[curr_v]:
+                if next_v not in visited:
+                    dfs(next_v)
         
         dfs(curr_v)
         return len(visited) == len(rooms)
