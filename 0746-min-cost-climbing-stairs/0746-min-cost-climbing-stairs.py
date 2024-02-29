@@ -1,16 +1,19 @@
 class Solution(object):
+    def __init__(self):
+        self.min_cost = {}
+        
     def minCostClimbingStairs(self, cost):
         """
         :type cost: List[int]
         :rtype: int
         """
-        min_cost = {}
-        cost.append(0)
-        for i in range(1, len(cost) + 1):
-            if i == 1 or i == 2:
-                if i not in min_cost:
-                    min_cost[i] = cost[i-1]
+        for i in range(len(cost) + 1):
+            if i == 0 or i == 1:
+                self.min_cost[i] = 0
             else:
-                min_cost[i] = min(min_cost[i-1], min_cost[i-2]) + cost[i-1]
-                
-        return min_cost[len(cost)]
+                self.min_cost[i] = min(
+                    self.min_cost[i-1] + cost[i-1],
+                    self.min_cost[i-2] + cost[i-2]
+                )
+        
+        return self.min_cost[len(cost)]
