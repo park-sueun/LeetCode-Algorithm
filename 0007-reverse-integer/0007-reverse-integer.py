@@ -1,8 +1,4 @@
 class Solution(object):
-    def __init__(self):
-        self.answer = []
-        self.is_positive = None
-        
     def reverse(self, x):
         """
         :type x: int
