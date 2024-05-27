@@ -49,6 +49,4 @@ class Solution(object):
         :type num: int
         :rtype: str
         """
-        answer = self.convert(num)
-        print(answer)
-        return answer
+        return self.convert(num)
