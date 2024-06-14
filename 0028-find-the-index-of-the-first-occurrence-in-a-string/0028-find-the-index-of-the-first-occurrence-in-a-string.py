@@ -6,32 +6,12 @@ class Solution(object):
         :rtype: int
         """
         
-        answer = -1
+        needle_len = len(needle)
+        haystack_len = len(haystack)
         
-        haystack = list(haystack)
-        needle = list(needle)
+        for i in range(haystack_len - needle_len + 1):
+            if haystack[i:i + needle_len] == needle:
+                return i
         
-        idx = 0
-        while idx < len(haystack):
-            if haystack[idx] != needle[0]:
-                idx += 1
-                continue
-            
-            is_found = True
-            for i, v in enumerate(needle):
-                if idx + i >= len(haystack):
-                    idx += 1
-                    is_found = False
-                    break
-                    
-                if haystack[idx + i] != v:
-                    idx += 1
-                    is_found = False
-                    break
-                
-            if is_found:
-                answer = idx
-                break
-            
-        return answer
+        return -1
                 
