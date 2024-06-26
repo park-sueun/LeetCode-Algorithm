@@ -9,9 +9,7 @@ class Solution(object):
         
         mid = len(nums) // 2
         if len(nums) % 2 != 0:
-            print(nums[mid])
             return nums[mid]
         else:
             target = [nums[mid], nums[mid - 1]]
-            print(nums[mid - 1], nums[mid], sum(target), float(sum(target)) / float(len(target)))
             return float(sum(target)) / float(len(target))
