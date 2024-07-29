@@ -5,12 +5,13 @@ class Solution(object):
         :rtype: None Do not return anything, modify matrix in-place instead.
         """
         n = len(matrix)
-        
-        # Transpose the matrix
-        for i in range(n):
-            for j in range(i, n):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-        # Reverse each row
-        for row in matrix:
-            row.reverse()
+        tmp = [[0] * n for _ in range(n)]
+
+        for i in range(n):
+            for j in range(n):
+                tmp[j][n - 1 - i] = matrix[i][j]
+        
+        for i in range(n):
+            for j in range(n):
+                matrix[i][j] = tmp[i][j]
